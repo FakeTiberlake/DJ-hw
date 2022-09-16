@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from pagination.pagination.settings import BUS_STATION_CSV
+from pagination.settings import BUS_STATION_CSV
 
 import csv
 
