@@ -7,6 +7,7 @@ class Article(models.Model):
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
     image = models.ImageField(null=True, blank=True, verbose_name='Изображение',)
+    sections = models.ManyToManyField('Section', related_name='articles', through='ArticleSection')
 
     class Meta:
         verbose_name = 'Статья'
@@ -14,3 +15,31 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Section(models.Model):
+
+    section_name = models.CharField(max_length=100, verbose_name='Раздел')
+
+    class Meta:
+        verbose_name = 'Раздел'
+        verbose_name_plural = 'Разделы'
+
+    def __str__(self):
+        return self.section_name
+
+
+class ArticleSection(models.Model):
+
+    articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scope')
+    sections = models.ForeignKey(Section, on_delete=models.CASCADE,related_name='scope')
+    main_section = models.BooleanField(verbose_name='Основной раздел')
+
+    class Meta:
+        verbose_name = 'Раздел статьи'
+        verbose_name_plural = 'Разделы статьи'
+
+    def __str__(self):
+        return f'Тэг; {"Основной" if self.main_section else "Второстепенный"}; {self.sections.section_name}'
+
+
