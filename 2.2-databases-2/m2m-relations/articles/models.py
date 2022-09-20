@@ -40,7 +40,7 @@ class ArticleSection(models.Model):
         verbose_name = 'Тематика статьи'
         verbose_name_plural = 'Тематики статей'
 
-    def __str__(self):
-        return f'Тэг; {"Основной" if self.main_section else "Второстепенный"}; {self.sections.section_name}'
+    # def __str__(self):
+    #     return f'Тэг; {"Основной" if self.main_section else "Второстепенный"}; {self.sections.section_name}'
 
 
