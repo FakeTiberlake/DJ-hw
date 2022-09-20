@@ -15,7 +15,7 @@ class ArticleSectionInlineFormset(BaseInlineFormSet):
             if form.cleaned_data.get('DELETE'):
                 continue
 
-            if form.cleaned_data.get('is_main'):
+            if form.cleaned_data.get('main_section'):
                 flag += 1
 
             if flag > 1:
@@ -26,9 +26,9 @@ class ArticleSectionInlineFormset(BaseInlineFormSet):
         return super().clean()
 
 
-class ArticleSectionInline(admin.StackedInline):
+class ArticleSectionInline(admin.TabularInline):
     model = ArticleSection
-    extra = 1
+    extra = 7
     formset = ArticleSectionInlineFormset
 
 
@@ -41,7 +41,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'section_name']
+    list_display = ['id', 'name']
 
 
 
