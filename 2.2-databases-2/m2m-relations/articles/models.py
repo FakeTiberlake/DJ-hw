@@ -20,11 +20,11 @@ class Article(models.Model):
 
 class Section(models.Model):
 
-    section_name = models.CharField(max_length=100, verbose_name='Раздел')
+    section_name = models.CharField(max_length=100, verbose_name='Тематика')
 
     class Meta:
-        verbose_name = 'Раздел'
-        verbose_name_plural = 'Разделы'
+        verbose_name = 'Тематика'
+        verbose_name_plural = 'Тематики'
 
     def __str__(self):
         return self.section_name
@@ -32,13 +32,13 @@ class Section(models.Model):
 
 class ArticleSection(models.Model):
 
-    articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scope', verbose_name='Статья')
-    sections = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='scope', verbose_name='Раздел')
+    articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes', verbose_name='Статья')
+    sections = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='scopes', verbose_name='Тематика')
     main_section = models.BooleanField(verbose_name='Основной раздел')
 
     class Meta:
-        verbose_name = 'Раздел статьи'
-        verbose_name_plural = 'Разделы статей'
+        verbose_name = 'Тематика статьи'
+        verbose_name_plural = 'Тематики статей'
 
     def __str__(self):
         return f'Тэг; {"Основной" if self.main_section else "Второстепенный"}; {self.sections.section_name}'
