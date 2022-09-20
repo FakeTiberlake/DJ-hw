@@ -12,6 +12,7 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+        ordering = ['-published_at']
 
     def __str__(self):
         return self.title
@@ -31,13 +32,13 @@ class Section(models.Model):
 
 class ArticleSection(models.Model):
 
-    articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scope')
-    sections = models.ForeignKey(Section, on_delete=models.CASCADE,related_name='scope')
+    articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scope', verbose_name='Статья')
+    sections = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='scope', verbose_name='Раздел')
     main_section = models.BooleanField(verbose_name='Основной раздел')
 
     class Meta:
         verbose_name = 'Раздел статьи'
-        verbose_name_plural = 'Разделы статьи'
+        verbose_name_plural = 'Разделы статей'
 
     def __str__(self):
         return f'Тэг; {"Основной" if self.main_section else "Второстепенный"}; {self.sections.section_name}'

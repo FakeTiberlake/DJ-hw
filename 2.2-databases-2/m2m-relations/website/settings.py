@@ -79,7 +79,8 @@ DATABASES = {
         'NAME': 'articles',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-        'PASSWORD': 'your password'
+        'USER': 'postgres',
+        'PASSWORD': 'STO100procentov',
     }
 }
 
