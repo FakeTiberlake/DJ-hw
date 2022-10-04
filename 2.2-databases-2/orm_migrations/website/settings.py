@@ -73,9 +73,10 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'orm',
+        'NAME': 'orm_migrations',
         'USER': 'postgres',
         'PASSWORD': 'STO100procentov',
+
     }
 }
 
@@ -130,5 +131,6 @@ try:
     from .settings_local import *
 except ImportError:
     pass
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
