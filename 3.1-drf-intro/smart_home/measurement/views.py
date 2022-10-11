@@ -6,19 +6,19 @@ from .serializers import SensorSerializer, SensorDetailSerializer, MeasurementSe
 
 
 # создание датчика и получение списка с краткой информацией
-class SensorView(generics, ListCreateAPIView):
+class SensorView(generics.ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
 
 # изменение датчика и получение данных по конкретному датчику
-class SensorRetrieveUpdate(generics, RetrieveUpdateAPIView):
+class SensorRetrieveUpdate(generics.RetrieveUpdateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorDetailSerializer
 
 
 # добавляет измерение
-class MeasurementAPIView(generics, CreateAPIView):
+class MeasurementAPIView(generics.CreateAPIView):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer
 
