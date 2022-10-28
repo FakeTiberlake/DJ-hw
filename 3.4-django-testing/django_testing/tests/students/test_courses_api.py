@@ -25,16 +25,11 @@ def students_factory():
     return factory
 
 
-# @pytest.fixture
-# def settings():
-#     return [:settings.MAX_STUDENTS_PER_COURSE]
-
-
 # тесты
 @pytest.mark.django_db
 def test_get_one_course(client, courses_factory):
     course = courses_factory(_quantity=1)
-    response = client.get('api/v1/courses/?id=1')
+    response = client.get('/api/v1/courses/{course.id}/')
     data = response.json()
     assert response.status_code == 200
     assert data[0]['id'] == course['id']
@@ -96,8 +91,3 @@ def test_delete_course(client, courses_factory, students_factory):
     response = client.delete(f'/courses/{courses[2].id}/')
     assert response.status_code == 204
     assert Course.objects.count() == count - 1
-
-
-# @pytest.mark.parametrize
-# def test_validate_students(client, students_factory, settings):
-#     pass
